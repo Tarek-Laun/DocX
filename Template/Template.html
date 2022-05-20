@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>#Title</title>
+</head>
+<body>
+    <nav>
+        <h2>#Title</h2>
+        #Nav
+    </nav>
+    <MD>
+        <div class="Content">
+            #Content
+        </div>
+    </MD>
+    <button class="ThemeSwitch" onclick="SetTheme()"><img id="ThemeSwitch" src="IMG/DarkButton.svg"></button>
+    <p class="CopyrightText">#Copyright</p>
+</body>
+</html>
+<script>
+var darkmode = false;
+document.documentElement.setAttribute('data-theme', "dark");
+document.getElementById("ThemeSwitch").src = "IMG/LightButton.svg";
+
+function SetTheme() {
+    console.log(document.getElementById("ThemeSwitch").src);
+
+    if (darkmode == false) {
+        document.documentElement.setAttribute('data-theme', "dark");
+        document.getElementById("ThemeSwitch").src = "IMG/LightButton.svg";
+        darkmode = true;
+    }else {
+        document.documentElement.setAttribute('data-theme', "light");
+        document.getElementById("ThemeSwitch").src = "IMG/DarkButton.svg";
+        darkmode = false;
+    }
+}
+</script>

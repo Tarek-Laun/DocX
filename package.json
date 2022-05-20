@@ -1,0 +1,23 @@
+{
+  "name": "docx",
+  "version": "0.0.1",
+  "description": "A Opensource Documentation System",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tarek-Laun/DocX.git"
+  },
+  "author": "Tarek Laun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tarek-Laun/DocX/issues"
+  },
+  "homepage": "https://github.com/Tarek-Laun/DocX#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "showdown": "^2.0.0"
+  }
+}
