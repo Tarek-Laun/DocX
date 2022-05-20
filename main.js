@@ -5,6 +5,7 @@ var showdown  = require('showdown');
 showdown.setFlavor('github');
 var converter = new showdown.Converter();
 
+// Load Config.
 var Config = JSON.parse(fs.readFileSync('./Config.json', 'utf8'));
 
 console.log("-----------------------")
@@ -13,6 +14,7 @@ console.log("-     ©Tarek Laun     -")
 console.log("-----------------------")
 console.log("")
 
+// Load Template.
 var htmlfile = fs.readFileSync("./Template/Template.html");
 
 GenNav();
@@ -47,6 +49,7 @@ function GetFolder(Path) {
     dir.forEach(element => {
 
         if (element.endsWith(".md")) {
+            // TODO: Linkt to Page.
             content += "<li><a href=''>" + path.basename(element).toString().replace(".md", ""); + "</a></li>";
         }else {
             content += GetFolder(Path + element);

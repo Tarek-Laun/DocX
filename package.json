@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/Tarek-Laun/DocX/issues"
   },
-  "homepage": "https://github.com/Tarek-Laun/DocX#readme",
+  "homepage": "https://github.com/Tarek-Laun/DocX",
   "dependencies": {
     "express": "^4.17.3",
     "showdown": "^2.0.0"
