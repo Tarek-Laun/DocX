@@ -21,6 +21,10 @@
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+* a {
+    color: white;
+}
+
 html {
     height: 100%;
 }
@@ -38,6 +42,7 @@ nav {
     background-color: var(--nav-bg-color);
     color: var(--font-color2);
     width: 20%;
+    position: sticky;
 }
 
 nav h2 {
