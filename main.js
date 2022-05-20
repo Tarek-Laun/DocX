@@ -56,7 +56,6 @@ function GetFolder(Path) {
         }else {
             content += GetFolder(Path + element);
         }
-
     });
 
     if (folder != "res") {
@@ -71,6 +70,8 @@ function ExportDoc() {
     if (!fs.existsSync('./Export/')) 
         fs.mkdirSync('./Export/');
         
+    CopyTemplate("./Template/");
+
     ExportFile(Config["Firstpage"]);
     
     ExportFolder("./res/");
@@ -100,8 +101,6 @@ function ExportFile(File) {
     var Path = "./Export/" + File.replace(".md", ".html");
 
     var content = converter.makeHtml(fs.readFileSync('./res/' + File, 'utf8'));
-    console.log(GenNav());
-    //content = content.replace("<a href>" , "").replace("</a>", "");
 
     hfile = htmlfile;
 
@@ -112,4 +111,25 @@ function ExportFile(File) {
     hfile = hfile.toString().replace("#Content", content);
 
     fs.writeFileSync(Path, hfile);
+}
+
+function CopyTemplate(Path) {
+    var dir = fs.readdirSync(Path);
+
+    var newDir = Path;
+    newDir = newDir.replace("./Template/", "./Export/") + "/";
+    console.log(newDir);
+
+    if (!fs.existsSync(newDir)) 
+        fs.mkdirSync(newDir);
+
+    dir.forEach(element => {
+        if (element != "Template.html") {
+            if (!fs.lstatSync(Path + "/" + element).isDirectory()) {
+                fs.copyFileSync(Path + "/" + element, newDir + element);
+            }else {
+                CopyTemplate(Path + element);
+            }
+        }
+    });
 }
