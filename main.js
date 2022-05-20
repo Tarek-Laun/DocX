@@ -50,7 +50,9 @@ function GetFolder(Path) {
 
         if (element.endsWith(".md")) {
             // TODO: Linkt to Page.
-            content += "<li><a href=''>" + path.basename(element).toString().replace(".md", ""); + "</a></li>";
+            var Name = path.basename(element).toString().replace(".md", "");
+            Path = Path.replace("./res/", "./");
+            content += "<li><a href='" + Path + Name + ".html'>" + path.basename(element).toString().replace(".md", "") + "</a></li>";
         }else {
             content += GetFolder(Path + element);
         }
@@ -97,13 +99,17 @@ function ExportFolder(Path) {
 function ExportFile(File) {
     var Path = "./Export/" + File.replace(".md", ".html");
 
+    var content = converter.makeHtml(fs.readFileSync('./res/' + File, 'utf8'));
+    console.log(GenNav());
+    //content = content.replace("<a href>" , "").replace("</a>", "");
+
     hfile = htmlfile;
 
     hfile = hfile.toString().replace("#Title", Config["Name"]);
     hfile = hfile.toString().replace("#Copyright", Config["Copyright"]);
     hfile = hfile.toString().replace("#Nav", GenNav());
     hfile = hfile.toString().replace("#Title", Config["Name"]);
-    hfile = hfile.toString().replace("#Content", converter.makeHtml(fs.readFileSync('./res/' + File, 'utf8')).replace("<a href>" , "").replace("</a>", ""));
+    hfile = hfile.toString().replace("#Content", content);
 
     fs.writeFileSync(Path, hfile);
 }
