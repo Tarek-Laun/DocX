@@ -5,7 +5,7 @@ var showdown  = require('showdown');
 showdown.setFlavor('github');
 var converter = new showdown.Converter();
 
-// Load Config.
+// Load Config
 var Config = JSON.parse(fs.readFileSync('./Config.json', 'utf8'));
 
 console.log("-----------------------")
@@ -14,13 +14,13 @@ console.log("-     ©Tarek Laun     -")
 console.log("-----------------------")
 console.log("")
 
-// Load Template.
+// Load Template
 var htmlfile = fs.readFileSync("./Template/Template.html");
 
 GenNav();
 ExportDoc();
 
-//Gen Navigation
+// Gen Navigation
 function GenNav() {
     
     var Content = "<ul id='UL'>";
@@ -65,11 +65,13 @@ function GetFolder(Path) {
     return content;
 }
 
-//Export Documentation
+// Export Documentation
 function ExportDoc() {
-    if (!fs.existsSync('./Export/')) 
-        fs.mkdirSync('./Export/');
-        
+    
+    if (fs.existsSync('./Export'))
+        fs.rmdirSync('./Export', { recursive: true });
+
+    fs.mkdirSync('./Export');
     CopyTemplate("./Template/");
 
     ExportFile(Config["Firstpage"]);
@@ -81,10 +83,11 @@ function ExportDoc() {
 function ExportFolder(Path) {
     var dir = fs.readdirSync(Path);
 
+    console.log("Exporting Folder: " + Path);
+
     dir.forEach(element => {
         if (element != Config["Firstpage"]) {
             if (element.endsWith(".md")) {
-                console.log(Path + element);
                 ExportFile(Path.replace("./res/", "") + element);
             }else if (element != Config["Firstpage"]) {
                 if (!fs.existsSync('./Export/' + element)) 
@@ -100,6 +103,10 @@ function ExportFolder(Path) {
 function ExportFile(File) {
     var Path = "./Export/" + File.replace(".md", ".html");
 
+    if (File == Config["Firstpage"]) 
+        Path = "./Export/index.html";
+    console.log("Exporting File: " + "./Export/" + File.replace(".md", ".html"));
+
     var content = converter.makeHtml(fs.readFileSync('./res/' + File, 'utf8'));
 
     hfile = htmlfile;
@@ -113,12 +120,12 @@ function ExportFile(File) {
     fs.writeFileSync(Path, hfile);
 }
 
+// Copy all Template Files to the Export Folder
 function CopyTemplate(Path) {
     var dir = fs.readdirSync(Path);
 
     var newDir = Path;
     newDir = newDir.replace("./Template/", "./Export/") + "/";
-    console.log(newDir);
 
     if (!fs.existsSync(newDir)) 
         fs.mkdirSync(newDir);
@@ -132,4 +139,4 @@ function CopyTemplate(Path) {
             }
         }
     });
-}
+} 
