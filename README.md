@@ -10,3 +10,5 @@ DocX is a Opensource Node JS based documentation tool that converts Markdown fil
 3. Create your documentation with Markdown files and folders in the ./res folder.
 4. Start the program with npm start.
 5. Copy the files in the Export folder to your web server.
+
+©Tarek Laun 2022

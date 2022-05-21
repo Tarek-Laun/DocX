@@ -2,5 +2,6 @@
     "Name": "Your Project Name",
     "Version": "0.0.1",
     "Copyright": "©Tarek Laun",
-    "Firstpage": "Setup.md" 
+    "Firstpage": "Setup.md",
+    "FirstAsIndex": true
 }

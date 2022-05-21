@@ -1,14 +1,14 @@
 # DocX
-DocX Setup.
 
-## First DocX Document
+## About
+DocX is a Opensource Node JS based documentation tool that converts Markdown files into a HTML documentation.
 
-```json
-{
-    "Name": "Your Project Name",
-    "Version": "0.0.1",
-    "Copyright": "©Tarek Laun"
-}
-```
+## Setup
+
+1. Download [Node JS](https://nodejs.org).
+2. Clone/Download the repository.
+3. Create your documentation with Markdown files and folders in the ./res folder.
+4. Start the program with npm start.
+5. Copy the files in the Export folder to your web server.
 
 ©Tarek Laun 2022

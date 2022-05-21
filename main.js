@@ -24,9 +24,16 @@ ExportDoc();
 function GenNav() {
     
     var Content = "<ul id='UL'>";
-
-    var dir = fs.readdirSync("./res/");
     
+    element = Config["Firstpage"];
+    var Name = path.basename(element).toString().replace(".md", "");
+
+    if (element == Config["Firstpage"] && Config["FirstAsIndex"] == true) {
+        Content += "<li><a href='/'>" + path.basename(element).toString().replace(".md", "") + "</a></li>";
+    }else {
+        Content += "<li><a href='" + "/" + Name + ".html'>" + path.basename(element).toString().replace(".md", "") + "</a></li>";
+    }
+
     Content += GetFolder("./res/");
 
     Content += "</ul>";
@@ -51,8 +58,12 @@ function GetFolder(Path) {
         if (element.endsWith(".md")) {
             // TODO: Linkt to Page.
             var Name = path.basename(element).toString().replace(".md", "");
-            Path = Path.replace("./res/", "./");
-            content += "<li><a href='" + Path + Name + ".html'>" + path.basename(element).toString().replace(".md", "") + "</a></li>";
+            var NewPath = Path.replace("./res/", "");
+
+            if (element != Config["Firstpage"]) {
+                content += "<li><a href='" + NewPath + "/" + Name + ".html'>" + path.basename(element).toString().replace(".md", "") + "</a></li>";
+            }
+
         }else {
             content += GetFolder(Path + element);
         }
