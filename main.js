@@ -29,14 +29,12 @@ function GenNav() {
     var Name = path.basename(element).toString().replace(".md", "");
 
     if (element == Config["Firstpage"] && Config["FirstAsIndex"] == true) {
-        Content += "<li><a href='/'>" + path.basename(element).toString().replace(".md", "") + "</a></li>";
+        Content += "<a href='/'><li>" + path.basename(element).toString().replace(".md", "") + "</li></a>";
     }else {
-        Content += "<li><a href='" + "/" + Name + ".html'>" + path.basename(element).toString().replace(".md", "") + "</a></li>";
+        Content += "<a href='" + "/" + Name + ".html'><li>" + path.basename(element).toString().replace(".md", "") + "</li></a>";
     }
 
     Content += GetFolder("./res/");
-
-    Content += "</ul>";
 
     return Content;
 }
@@ -49,7 +47,7 @@ function GetFolder(Path) {
     var content = "";
 
     if (folder != "res") {
-        content = "<li>" + folder + "</li>";
+        content = "<li class='NavHeader'>" + folder + "</li>";
         content += "<ul class='nested'>";
     }
 
@@ -61,7 +59,7 @@ function GetFolder(Path) {
             var NewPath = Path.replace("./res/", "");
 
             if (element != Config["Firstpage"]) {
-                content += "<li><a href='" + NewPath + "/" + Name + ".html'>" + path.basename(element).toString().replace(".md", "") + "</a></li>";
+                content += "<a href='" + NewPath + "/" + Name + ".html'><li>" + path.basename(element).toString().replace(".md", "") + "</li></a>";
             }
 
         }else {

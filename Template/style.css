@@ -10,10 +10,15 @@
 [data-theme="dark"] {
     --main-bg-color: #202020;
     --nav-bg-color: #181818;
-    --button--bg: #000000;
+    --button--bg: #222222;
+    --button--hover: #181818;
     --Code--bg: #1b1b1b;
     --font-color1: white;
     --font-color2: white;
+    --nav-link: #222222;
+    --nav-linkHover: #181818;
+    --nav-header: #131313;
+    --nav-headerLink: #101010;
 }
 
 * {
@@ -75,6 +80,7 @@ MD {
     position: fixed;
     bottom: 0;
     left: 0;
+    color: white;
     margin: 0;
 }
 
@@ -92,3 +98,27 @@ pre {
 }
 
 /* Nav Bar */
+
+nav ul {
+    list-style: none;
+    padding-left: 0em;
+}
+
+nav ul li {
+    display: block;
+    background: var(--nav-link);
+    padding: 1em;
+}
+
+nav ul li:hover {
+    background: var(--nav-linkHover);
+}
+
+.nested li {
+    background: var(--nav-headerLink);
+    display: block;
+}
+
+.NavHeader {
+    background: var(--nav-header);
+}
